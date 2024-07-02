@@ -82,24 +82,3 @@ examples_prompt = [ # create example to fewshort
         },
     ]
 
-
-import logging
-import os
-import datetime
-
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
-
-
-os.makedirs("./logs", exist_ok=True)
-today = datetime.date.today()
-log_filename = today.strftime('%Y-%m-%d') + '-logging.txt'  # Định dạng: YYYY-MM-DD.log
-
-
-file_handler = logging.FileHandler("./logs/" + log_filename, mode='a') # mode a: apppend, mode w: ghi đè
-formatter = logging.Formatter('%(asctime)s - %(levelname)s: %(message)s')
-file_handler.setFormatter(formatter)
-logger.addHandler(file_handler)
-
-
-logger.debug("Bắt đầu chương trình")
