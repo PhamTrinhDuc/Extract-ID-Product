@@ -8,10 +8,7 @@ logger_file = set_logging_file() # sử dụng để ghi log các file đã xử
 
 
 # Thông tin kết nối FTP
-ftp_server = "10.61.19.198"
-ftp_user = "ctct"
-ftp_password = "ctct123"
-ftp_directory = "/RPA/RPA_ads/"
+
 
 # Kết nối đến server FTP
 ftp = FTP(ftp_server)
