@@ -80,5 +80,9 @@ examples_prompt = [ # create example to fewshort
             "command": "máy giặt aqua aqw u100ft bk",
             "ID": "u100ft"
         },
+        {
+            "command": "ban ui philip hd1172 nguyen kim",
+            "ID": "hd1172"
+        }
     ]
 
