@@ -1,8 +1,0 @@
-2024-07-02 10:10:07,042:DEBUG: Error
-2024-07-02 10:11:49,424 - DEBUG: Bắt đầu chương trình
-2024-07-02 10:11:49,424 - INFO: Xử lý dữ liệu
-2024-07-02 10:11:49,424 - WARNING: Gặp phải cảnh báo tiềm ẩn
-2024-07-02 10:11:49,424 - ERROR: Lỗi xảy ra
-2024-07-02 10:11:49,424 - CRITICAL: Chương trình bị sập
-2024-07-02 10:12:28,428 - DEBUG: Bắt đầu chương trình
-2024-07-02 10:33:21,604 - DEBUG: Bắt đầu chương trình

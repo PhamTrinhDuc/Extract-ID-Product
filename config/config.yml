@@ -10,4 +10,4 @@ API_KEY:
   GROQ_API_KEY_9:  "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"
   GROQ_API_KEY_10: "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"
 
-MODEL: llama3-8b-8192
+MODEL: "llama3-8b-8192"
