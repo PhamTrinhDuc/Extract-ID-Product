@@ -4,22 +4,22 @@ from langchain.prompts.few_shot import FewShotPromptTemplate
 from langchain.chains import LLMChain
 import pandas as pd
 import os
-import logging
 import threading
 from config.config import get_config
 from fewshort_examples import examples_prompt
 import logging
+from set_logging import set_logging_file, set_logging_error
 
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
 config = get_config()
+logger_error = set_logging_error() # sử dụng để ghi log lỗi 
+logger_file = set_logging_file() # sủ dụng để ghi log của file đã được thực hiện trong folder
 
 def create_model(idx: int): # create llm model
     api_key = "GROQ_API_KEY_" + str(idx) 
     model = ChatGroq(
         api_key=config['API_KEY'][api_key],
-        model=os.getenv("MODEL"),
+        model=config['MODEL'],
         temperature=0.0,
         max_tokens=500
     )
@@ -73,14 +73,16 @@ def extract_ID(idx: int, df) -> list: # process response from llm to get ID
     for idx, product in enumerate(df['Keyword'].iloc[: 10], start=1):
         try:
             response = llm_invoke(product, idx)
+            print(response)
         except Exception as e:
-            print(f"Error model {idx}")
+            # logger_error.info(f"Model {idx} error occurred - Error: {e}")
             ID = None
         else:
             try:
                 ID = response.split("\n\n")[-1].split(':')[1].strip()
                 print(ID)
             except Exception as e:
+                logger_error.info(f"Response returned is not correct format - Response: {response}")
                 ID = None
         finally:
             results.append(ID)
@@ -104,6 +106,7 @@ def main(folder_name: str):
     functions = []
 
     for idx, df_name in enumerate(os.listdir(folder_name), start=1):
+        logger_file.info(f"Folder name: {folder_name} - {df_name} file has been made")
         path_df = os.path.join(folder_name, df_name)
         df = pd.read_csv(path_df, skiprows=[0, 1], encoding="utf-16", delimiter='\t')
         functions.append(extract_ID(idx, df))
@@ -113,4 +116,7 @@ def main(folder_name: str):
 
 if __name__ == "__main__":
     folder_name = "data"
-    main(folder_name)
+    # main(folder_name)
+    df = pd.read_csv("data/sample.csv", skiprows=[0, 1], encoding="utf-16", delimiter='\t')
+    response = llm_invoke(df['Keyword'].iloc[0], 1)
+    print(response)
