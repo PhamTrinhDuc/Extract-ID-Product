@@ -1,0 +1,2 @@
+2024-07-02 11:46:01,912 - INFO: Folder name: data - sample.csv file has been made
+2024-07-02 11:46:09,186 - INFO: Folder name: data - Keyword Stats 2024-06-26 at 09_20_08.csv file has been made
