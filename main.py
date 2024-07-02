@@ -73,14 +73,14 @@ def extract_ID(idx: int, df) -> list: # process response from llm to get ID
     for idx, product in enumerate(df['Keyword'].iloc[: 10], start=1):
         try:
             response = llm_invoke(product, idx)
-            print(response)
+            # print(response)
         except Exception as e:
-            # logger_error.info(f"Model {idx} error occurred - Error: {e}")
+            logger_error.info(f"Model {idx} error occurred - Error: {e}")
             ID = None
         else:
             try:
                 ID = response.split("\n\n")[-1].split(':')[1].strip()
-                print(ID)
+                # print(ID)
             except Exception as e:
                 logger_error.info(f"Response returned is not correct format - Response: {response}")
                 ID = None
@@ -116,7 +116,7 @@ def main(folder_name: str):
 
 if __name__ == "__main__":
     folder_name = "data"
-    # main(folder_name)
-    df = pd.read_csv("data/sample.csv", skiprows=[0, 1], encoding="utf-16", delimiter='\t')
-    response = llm_invoke(df['Keyword'].iloc[0], 1)
-    print(response)
+    main(folder_name)
+    # df = pd.read_csv("data/sample.csv", skiprows=[0, 1], encoding="utf-16", delimiter='\t')
+    # response = llm_invoke(df['Keyword'].iloc[0], 1)
+    # print(response)
